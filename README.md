@@ -13,6 +13,7 @@ $ echo "pozdro hateread"
 	
 		Abstract base class for Planet, Satellite and Star. Provides basic methods and 
 		attributes, shared by 	those classes.
+		
 	2. Planet
 	
 		Subclass of CelestialBody. Overrides the method displayInformation(), adding to its
