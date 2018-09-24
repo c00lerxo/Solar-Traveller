@@ -6,7 +6,7 @@ public class MainController {
 
 	public static void main(String[] args) {
 		
-		System.out.println("*************KRYSTIAN GĄTAREK OOP PROJECT*************");
+		System.out.println("*************OOP PROJECT*************");
 		System.out.println("  _________      .__                 ___________                         .__  .__                \n" + 
 				" /   _____/ ____ |  | _____ _______  \\__    ___/___________ ___  __ ____ |  | |  |   ___________ \n" + 
 				" \\_____  \\ /  _ \\|  | \\__  \\\\_  __ \\   |    |  \\_  __ \\__  \\\\  \\/ // __ \\|  | |  | _/ __ \\_  __ \\\n" + 
