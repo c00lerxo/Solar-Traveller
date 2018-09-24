@@ -1,0 +1,3 @@
+# Work in progres...
+
+$ echo "pozdro hateread"
