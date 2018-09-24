@@ -1,6 +1,9 @@
 package controllers;
 
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.ArrayList;
+import celestialobjects.CelestialBody;
+import factories.CelestialBodyFactory; 
 
 public class MainController {
 
@@ -27,7 +30,7 @@ public class MainController {
 			switch(user_choice) {
 			
 			case 1:
-				startTravel();
+				startTravel(input_reader);
 				break;
 			case 2:
 				continueTravel();
@@ -43,14 +46,35 @@ public class MainController {
 		}
 	}
 		
-	static void startTravel() {
+	static void startTravel(Scanner reader) {
 		
-		TravelController travelController = new TravelController();
+		CelestialBodyFactory factory = new CelestialBodyFactory();
+		ArrayList<CelestialBody> createdObjects = factory.getCelestialBodiesArray();
+		
+		TravelController travelController = new TravelController(reader, createdObjects);
+		try {
+			
+			travelController.selectDestination();
+			
+		} catch (InterruptedException e) {
+	
+			e.printStackTrace();
+			
+		}
+		
 	}
 	
 	static void continueTravel() {
 		
-		TravelController travelController = new TravelController();
+		System.out.println("Cos sie dzieje...");
+		//TravelController travelController = new TravelController();
+		
+	}
+	
+	static void quit() {
+		
+		System.out.println("cos sie dzieje...");
+		
 	}
 	
 }

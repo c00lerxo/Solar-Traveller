@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczenia (hard question przed czy po?)
 	
@@ -10,11 +11,12 @@ public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczeni
 	protected String correctAnswer;
 	private ArrayList<String> answers;
 	
-	public Question(String _text, String _answerA, String _answerB, String _answerC, String _answerD,
-			int _reward, int _penalty, ArrayList<String> _answers) {
+	public Question(String _text, String _correctAnswer, int _reward, int _penalty) {
 		
 		text = _text;
-		answers = _answers;
+		correctAnswer = _correctAnswer;
+		reward = _reward;
+		penalty = _penalty;
 		
 	}
 	
@@ -43,10 +45,33 @@ public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczeni
 		
 	}
 	
-	public boolean isAnswerCorrect(String _userAnswer) {
+	public void answerQuestion(Scanner reader, TravelController controller) {
+		
+		reader.useDelimiter("\n");
+		String userAnswer = reader.next();
+		System.out.println(userAnswer);
+		
+		if(userAnswer.toLowerCase() == correctAnswer.toLowerCase()) {
+			
+			System.out.println("\nThe answer is correct! You receive " + reward + " credits.");
+			controller.addCredits(reward);
+			
+		}
+		
+		else {
+			
+			if(penalty > 0)
+				System.out.println("\nThe answer is incorrect! You lose " + penalty + " credits.");
+			else
+				System.out.println("\nThe answer is incorrect!");
+		}
+		
+	}
+	
+	/*public boolean isAnswerCorrect(String _userAnswer) {
 		
 		return _userAnswer.toLowerCase() == correctAnswer.toLowerCase();
 		
-	}
+	}*/
 
 }

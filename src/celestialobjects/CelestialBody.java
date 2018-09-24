@@ -8,17 +8,19 @@ public abstract class CelestialBody {
 	protected String name;
 	protected String shortDescription;
 	protected String extendedDescription;
+	protected String onApproachText;
 	protected String radius;
 	protected String surfaceArea;
 	protected String volume;
 	protected String mass;
 	protected String temperature;
 	protected int cost;
-	protected ArrayList<Question> questions = new ArrayList();
+	protected ArrayList<Question> questions = new ArrayList<Question>();
 	
-	public CelestialBody(String _name, String _shortDescription, String _extendedDescription, String _radius,
-					String _surfaceArea, String _volume, String _mass, String _temperature, int _cost,
-					ArrayList<Question> _questions) {
+	public CelestialBody(String _name, String _shortDescription, String _extendedDescription,
+						String _onApproachText, String _radius, String _surfaceArea,
+						String _volume, String _mass, String _temperature,
+						int _cost, ArrayList<Question> _questions) {
 		
 		name = _name;
 		shortDescription = _shortDescription;
@@ -45,6 +47,7 @@ public abstract class CelestialBody {
 		
 	}
 	
+	
 	public ArrayList<Question> getQuestions() {
 		
 		return questions;
@@ -55,6 +58,12 @@ public abstract class CelestialBody {
 		
 		return shortDescription;
 		
+	}
+	
+	public String getApproachText() {
+		
+		return onApproachText;
+				
 	}
 	
 	public void displayInformation() {
@@ -68,5 +77,6 @@ public abstract class CelestialBody {
 		System.out.println("Temperature: " + temperature);
 		
 	}
+	
 	
 }

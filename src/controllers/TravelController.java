@@ -11,42 +11,65 @@ public class TravelController {
 	private int credits;
 	private ArrayList<CelestialBody> visitedObjects = new ArrayList();
 	private ArrayList<CelestialBody> unvisitedObjects = new ArrayList();
+	private Scanner reader;
 	
-	public TravelController() {
+	public TravelController(Scanner _reader, ArrayList<CelestialBody> createdObjects) {
 		
-		credits = 0;
+		credits = 100;
+		reader = _reader;
+		unvisitedObjects = createdObjects;
 		
 	}
 	
-	public TravelController(int loaded_credits) {
+	public TravelController(Scanner _reader, ArrayList<CelestialBody> createdObjects, 
+							int loadedCredits) {
 		
-		credits = loaded_credits;
+		credits = loadedCredits;
+		reader = _reader;
 		
 	}
 	
-	public void selectDestination(Scanner reader) throws InterruptedException { // TimeUnit sleep raises this ex
+	public void addCredits(int gainedCredits) {
 		
-		System.out.println("\n Select your destination: ");
+		credits += gainedCredits;
 		
-		for(int i = 0; i <= unvisitedObjects.size(); i++) {
+	}
+	
+	public void subtractCredits(int lostCredits) {
+		
+		credits -= lostCredits;
+		
+	}
+	
+	public void selectDestination() throws InterruptedException { // TimeUnit sleep raises this ex
+		
+		while(true) {
+			System.out.println("\n Select your destination: ");
 			
-			CelestialBody destinationObject = unvisitedObjects.get(i);
+			for(int i = 0; i < unvisitedObjects.size(); i++) {
+				
+				CelestialBody destinationObject = unvisitedObjects.get(i);
+				
+				System.out.println("\n" + i + ". " + destinationObject.getName() +
+							" - " + Integer.toString(destinationObject.getCost()));
+				System.out.println("\n" + destinationObject.getShortDescription());
+				
+			}
 			
-			System.out.println("\n" + i + ". " + destinationObject.getName() +
-						" - " + Integer.toString(destinationObject.getCost()));
-			System.out.println("\n" + destinationObject.getShortDescription());
+			int selectedOption = reader.nextInt();
+			CelestialBody destinationObject = unvisitedObjects.get(selectedOption);
 			
+			if(manageCredits(destinationObject.getCost()))
+				travelToDestination(destinationObject);
+			else
+				System.out.println("Unsufficient credits!");
 		}
-		
-		int selectedOption = reader.nextInt();
-		
-		travelToDestination(unvisitedObjects.get(selectedOption));
 	}
 	
 	private void travelToDestination(CelestialBody destinationObject) throws InterruptedException { //
 		                                                                                         // thrown by
 		                                                                                        // sleep
-		System.out.println("You and your space shuttle on your way to "
+		System.out.println("\nYou and your space shuttle on your way to "
 							+ destinationObject.getName());
 		
 		for(int i = 0; i < 5; i++) {
@@ -55,31 +78,34 @@ public class TravelController {
 			System.out.println(".");
 		}
 		
+		System.out.println(destinationObject.getApproachText());
 		destinationObject.displayInformation();
-		
+		System.out.println("\nTime for questions! \n");
+		askQuestion(destinationObject.getQuestions());
+		System.out.println("\n");
 	}
 	
-	private void askQuestion(CelestialBody destinationObject) {
+	private boolean manageCredits(int travelCost) {
 		
-		ArrayList<Question> questions = destinationObject.getQuestions();
+		if(credits >= travelCost) {
+			
+			credits =- travelCost;
+			return true;
+		
+		}
+		else
+			return false;
+				
+	}
+	
+	private void askQuestion(ArrayList<Question> questions) {
 		
 		for(int i = 0; i < questions.size(); i++) {
 			
 			Question question = questions.get(i);
-			ArrayList<String> answers = question.getAnswers();
 			
 			System.out.println(question.getText());
-			
-			/*for(int i = 0; i < answers.size(); i++) {
-				
-				Sy
-			}*/
-			
-			
+			question.answerQuestion(reader, this);
 		}
-			
-		
-		
 	}
-	
 }
