@@ -10,34 +10,44 @@ $ echo "pozdro hateread"
 
 + **celestialobjects**
 	1. CelestialBody
+	
 		Abstract base class for Planet, Satellite and Star. Provides basic methods and 
 		attributes, shared by 	those classes.
 	2. Planet
+	
 		Subclass of CelestialBody. Overrides the method displayInformation(), adding to its
 		content its own attributes.
 	3. Star
+	
 		Subclass of CelestialBody. Overrides the method displayInformation(), adding to its
 		content its own attributes.
 	4. Satellite
+	
 		Subclass of Planet. Overrides the method displayInformation(), adding to its
 		content its own attributes.
 	
 + **controllers**
 	1. MainController
+	
 		An entry point for the application. Handles showing the menu and uses SaveAndLoadManager to save or load the data.
 	2. TravelController
+	
 		Controls the gameplay.
 	3. Question
+	
 		Provides basic attributes and methods to ask and takes user input to answer the question.
 	4. MultiQuestion
+	
 		Inherits from Question, adds the function of showing 4 possible answers.
 
 + **factories**
 	1. CelestialBodyFactory
+	
 		Class used for creation of objects (CelestialBodies, Questions).
 	
 + **tools**
 	1. SaveAndLoadManager
+	
 		Handles loading and saving the user data.
 
 #Tips for friend
