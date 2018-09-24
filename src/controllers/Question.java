@@ -1,15 +1,13 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczenia (hard question przed czy po?)
+public class Question {
 	
 	protected String text;
 	protected int reward;
 	protected int penalty;
 	protected String correctAnswer;
-	private ArrayList<String> answers;
 	
 	public Question(String _text, String _correctAnswer, int _reward, int _penalty) {
 		
@@ -25,13 +23,6 @@ public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczeni
 		return text;
 		
 	}
-	
-	public ArrayList<String> getAnswers() {
-		
-		return answers;
-		
-	}
-	
 	
 	public int getReward() {
 		
@@ -49,11 +40,10 @@ public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczeni
 		
 		reader.useDelimiter("\n");
 		String userAnswer = reader.next();
-		System.out.println(userAnswer);
 		
-		if(userAnswer.toLowerCase() == correctAnswer.toLowerCase()) {
+		if(userAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) {
 			
-			System.out.println("\nThe answer is correct! You receive " + reward + " credits.");
+			System.out.println("\nThe answer is correct! You receive " + reward + " credits.\n");
 			controller.addCredits(reward);
 			
 		}
@@ -61,17 +51,10 @@ public class Question { // zastanowic sie czy odpowiednia kolejnosc dziedziczeni
 		else {
 			
 			if(penalty > 0)
-				System.out.println("\nThe answer is incorrect! You lose " + penalty + " credits.");
+				System.out.println("\nThe answer is incorrect! You lose " + penalty + " credits.\n");
 			else
-				System.out.println("\nThe answer is incorrect!");
+				System.out.println("\nThe answer is incorrect!\n");
 		}
 		
 	}
-	
-	/*public boolean isAnswerCorrect(String _userAnswer) {
-		
-		return _userAnswer.toLowerCase() == correctAnswer.toLowerCase();
-		
-	}*/
-
 }

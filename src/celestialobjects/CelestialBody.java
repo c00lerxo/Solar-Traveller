@@ -25,6 +25,7 @@ public abstract class CelestialBody {
 		name = _name;
 		shortDescription = _shortDescription;
 		extendedDescription = _extendedDescription;
+		onApproachText = _onApproachText;
 		radius = _radius;
 		surfaceArea = _surfaceArea;
 		volume = _volume;
