@@ -42,7 +42,6 @@ public class SaveAndLoadManager {
 	public static ArrayList<String> loadData() {
 		
 		ArrayList<String> loadedData = new ArrayList<String>();
-		System.out.println("dziala..");
 		
 		try {
 			
@@ -62,8 +61,6 @@ public class SaveAndLoadManager {
 			
 		}
 		
-		System.out.println("dziala");
-		System.out.println(loadedData);
 		return loadedData;
 	}
 

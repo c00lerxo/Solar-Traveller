@@ -37,7 +37,7 @@ public class MainController {
 				continueTravel(inputReader);
 				break;
 			case 3:
-				inputReader.close();
+				quit(inputReader);
 				break;
 			default:
 				System.out.println("Please type in correct number!");
@@ -55,9 +55,11 @@ public class MainController {
 		TravelController travelController = new TravelController(reader, createdObjects);
 			
 		try {
+			
 			showGameMenu(reader, travelController);
+			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 				
@@ -67,14 +69,12 @@ public class MainController {
 	static void continueTravel(Scanner reader) throws InterruptedException {
 		
 		ArrayList<String> loadedData = SaveAndLoadManager.loadData();
-		System.out.println("dziala");
-		System.out.println(loadedData);
+
 		if(!loadedData.isEmpty()) {
 			
 			int loadedCredits = Integer.parseInt(loadedData.get(0));
 			CelestialBodyFactory factory = new CelestialBodyFactory(loadedData);
 			ArrayList<CelestialBody> loadedObjects = factory.getCelestialBodiesArray();
-			System.out.println(loadedObjects);
 			
 			TravelController travelController = new TravelController(reader, loadedObjects,
 																	loadedCredits);
@@ -84,9 +84,11 @@ public class MainController {
 		
 	}
 	
-	static void quit() {
+	static void quit(Scanner reader) {
 		
-		System.out.println("cos sie dzieje...");
+		reader.close();
+		System.out.println("\n\nBye bye!");
+		System.exit(0);
 		
 	}
 	
@@ -110,7 +112,7 @@ public class MainController {
 				SaveAndLoadManager.saveData(controller.getCredits(), controller.getUnvisitedObjects());
 				break;	
 			case 3:
-				System.out.println("Cos");
+				quit(reader);
 				break;
 			default:
 				System.out.println("Wrong key!");

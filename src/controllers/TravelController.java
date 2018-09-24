@@ -10,7 +10,7 @@ import celestialobjects.CelestialBody;
 public class TravelController {
 	
 	private int credits;
-	private ArrayList<CelestialBody> unvisitedObjects = new ArrayList();
+	private ArrayList<CelestialBody> unvisitedObjects = new ArrayList<CelestialBody>();
 	private Scanner reader;
 	
 	public TravelController(Scanner _reader, ArrayList<CelestialBody> createdObjects) {
@@ -71,7 +71,8 @@ public class TravelController {
 				System.out.println("\n" + destinationObject.getShortDescription());
 				
 			}
-			System.out.println("\n" + j+1 + ". " + "Go back");
+
+			System.out.println("\n" + (j+1) + ". " + "Go back");
 			
 			int selectedOption = reader.nextInt();
 			
