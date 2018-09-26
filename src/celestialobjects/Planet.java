@@ -10,7 +10,7 @@ public class Planet extends CelestialBody {
 	protected String orbitalPeriod;
 	
 	public Planet(String _name, String _shortDescription, String _extendedDescription,
-					String _radius, String _onApproachText, String _surfaceArea, 
+					String _onApproachText, String _radius, String _surfaceArea, 
 					String _volume, String _mass, String _temperature, int _cost,
 					ArrayList<Question> _questions, String _aphelion, String _perihelion,
 					String _orbitalPeriod) {

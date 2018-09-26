@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Scanner;
 
+
 public class Question {
 	
 	protected String text;
@@ -38,10 +39,10 @@ public class Question {
 	
 	public void answerQuestion(Scanner reader, TravelController controller) {
 		
-		reader.useDelimiter("\n");
+		reader.useDelimiter("\n"); // change the delimeter to make sure that user input is readed properly
 		String userAnswer = reader.next();
 		
-		if(userAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) {
+		if(userAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) { // to lower case because case doesn't matter
 			
 			System.out.println("\nThe answer is correct! You receive " + reward + " credits.\n");
 			controller.addCredits(reward);
@@ -54,6 +55,8 @@ public class Question {
 				System.out.println("\nThe answer is incorrect! You lose " + penalty + " credits.\n");
 			else
 				System.out.println("\nThe answer is incorrect!\n");
+			
+			controller.subtractCredits(penalty);
 		}
 		
 	}

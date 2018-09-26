@@ -7,6 +7,10 @@ import factories.CelestialBodyFactory;
 import tools.SaveAndLoadManager; 
 
 public class MainController {
+	
+	/* Entry point for the application - shows main interface. The Scanner is passed to methods, because
+	 * you can create only one instance of it per application - after closing it, you can't open it again, and
+	 * creating a new one can cause bugs */
 
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -47,24 +51,21 @@ public class MainController {
 		}
 	}
 		
-	static void startTravel(Scanner reader) {
+	/* New game */
+	
+	static void startTravel(Scanner reader) throws InterruptedException {
 		
-		CelestialBodyFactory factory = new CelestialBodyFactory();
-		ArrayList<CelestialBody> createdObjects = factory.getCelestialBodiesArray();
+		CelestialBodyFactory factory = new CelestialBodyFactory(); // call default constructor (because new game)
+		ArrayList<CelestialBody> createdObjects = factory.getCelestialBodiesArray(); // get array of objects to visit
 		
-		TravelController travelController = new TravelController(reader, createdObjects);
+		TravelController travelController = new TravelController(reader, createdObjects); // create new game
 			
-		try {
-			
-			showGameMenu(reader, travelController);
-			
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
+		showGameMenu(reader, travelController); // show in-game user interface
 				
 	}
 
+	
+	/* Load game */
 	
 	static void continueTravel(Scanner reader) throws InterruptedException {
 		
@@ -72,14 +73,16 @@ public class MainController {
 
 		if(!loadedData.isEmpty()) {
 			
-			int loadedCredits = Integer.parseInt(loadedData.get(0));
-			CelestialBodyFactory factory = new CelestialBodyFactory(loadedData);
-			ArrayList<CelestialBody> loadedObjects = factory.getCelestialBodiesArray();
+			int loadedCredits = Integer.parseInt(loadedData.get(0)); // get credits from save
+			CelestialBodyFactory factory = new CelestialBodyFactory(loadedData); // call constructor for loadedData
+			ArrayList<CelestialBody> loadedObjects = factory.getCelestialBodiesArray(); // get loaded objects
 			
 			TravelController travelController = new TravelController(reader, loadedObjects,
-																	loadedCredits);
+																	loadedCredits); // create loaded game
 			
-			showGameMenu(reader, travelController);
+			System.out.println("\n\nGame succesfully loaded!\n\n");
+			
+			showGameMenu(reader, travelController); // show in-game user interface
 		}
 		
 	}

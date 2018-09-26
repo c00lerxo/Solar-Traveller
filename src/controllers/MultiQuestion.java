@@ -3,6 +3,8 @@ package controllers;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/* Question with multiple choices */
+
 public class MultiQuestion extends Question {
 
 	private ArrayList<String> answers = new ArrayList<String>();
@@ -16,8 +18,8 @@ public class MultiQuestion extends Question {
 		
 		for(int i = 0; i < answers.size(); i++) {
 			
-			text += "\n" + (i+1) + ". " + answers.get(i) + "\n";
-		}
+			text += "\n" + (i+1) + ". " + answers.get(i) + "\n"; // We add the content of answers ArrayList to questionText
+		}                                                      // in order to display answer options
 
 	}
 	

@@ -1,10 +1,8 @@
 package controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 import celestialobjects.CelestialBody;
 
 public class TravelController {
@@ -13,6 +11,8 @@ public class TravelController {
 	private ArrayList<CelestialBody> unvisitedObjects = new ArrayList<CelestialBody>();
 	private Scanner reader;
 	
+	/* Constructor for new game */
+	
 	public TravelController(Scanner _reader, ArrayList<CelestialBody> createdObjects) {
 		
 		credits = 100;
@@ -20,6 +20,8 @@ public class TravelController {
 		unvisitedObjects = createdObjects;
 		
 	}
+	
+	/* Constructor for loaded game */
 	
 	public TravelController(Scanner _reader, ArrayList<CelestialBody> loadedObjects, 
 							int loadedCredits) {
@@ -77,14 +79,14 @@ public class TravelController {
 			int selectedOption = reader.nextInt();
 			
 			if(selectedOption == j+1)
-				break;
+				break; // exit menu of selecting travel destination - go back option
 			else {
 				
 				CelestialBody destinationObject = unvisitedObjects.get(selectedOption-1);
 				
-				if(manageCredits(destinationObject.getCost())) {
+				if(manageCredits(destinationObject.getCost())) { // check if player has sufficient credits
 					
-					travelToDestination(destinationObject);
+					travelToDestination(destinationObject); // if yes, go ahead!!
 					break;
 					
 				}
@@ -127,11 +129,13 @@ public class TravelController {
 		}
 	}
 	
+	/* Returns true if player has sufficient credits to travel and subtract the required amount */
+	
 	private boolean manageCredits(int travelCost) {
 		
 		if(credits >= travelCost) {
 			
-			credits =- travelCost;
+			credits -= travelCost;
 			return true;
 		
 		}
@@ -139,6 +143,8 @@ public class TravelController {
 			return false;
 				
 	}
+	
+	/* Uses the Question interface to show the questions (and possible answers if MultiQuestion) */
 	
 	private void askQuestion(ArrayList<Question> questions) {
 		
@@ -150,6 +156,8 @@ public class TravelController {
 			question.answerQuestion(reader, this);
 		}
 	}
+	
+	/* Aesthetic method - used to create delay effect */
 	
 	private void delay() {
 		
