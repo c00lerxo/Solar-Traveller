@@ -1,11 +1,11 @@
-#Solar Traveller Console Project
+# Solar Traveller Console Project
 
 A small quiz game, made as a project for Object-Oriented Programming course.
 
 $ echo "pozdro hateread"
 
 
-#Structure
+# Structure
 
 
 + **celestialobjects**
@@ -56,7 +56,7 @@ $ echo "pozdro hateread"
 	
 		Handles loading and saving the user data.
 
-#Tips for friend
+# Tips for friend
 
 
 + You can explain **polymorphism** basing on ArrayList<CelestialBody> and ArrayList<Question> (there are plenty of them throughout the program)
