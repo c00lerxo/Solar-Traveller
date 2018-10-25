@@ -65,6 +65,3 @@ $ echo "pozdro hateread"
 + **Before presenting** make sure that the app works on the university computers. To run the app, you can use Eclipse (just select the directory with project as a workspace [should work, if not, try to do File->Import project or something like this]) or command line. [Further instructions for running from command line](https://ymichael.com/2014/09/24/build-and-run-eclipse-java-projects-on-the-command-line.html)
 + **Ask me if you need something!**
 
-#TWOI LUDZIE DZIĘCIOŁY. DZIEŃ DOBRY
-
-
